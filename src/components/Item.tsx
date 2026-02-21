@@ -12,7 +12,7 @@ const Item: FunctionComponent<Props> = ({ dispatch, id, task, urgency, complete 
 	}
 	
 	function handleDelete(_e) {
-		complete ? dispatch({type: "delete", payload: id}) : alert("Task must be completed before deletion.")
+		dispatch({type: "delete", payload: id})
 	}
 
 	return (
@@ -23,7 +23,7 @@ const Item: FunctionComponent<Props> = ({ dispatch, id, task, urgency, complete 
 		</label>
 		<br />
 		<button>Edit</button>
-		<button onClick={handleDelete}>Delete</button>
+		{ complete && <button onClick={handleDelete}>Delete</button> }
 	</li>
   )
 }
