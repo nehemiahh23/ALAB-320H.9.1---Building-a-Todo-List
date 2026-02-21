@@ -1,7 +1,7 @@
 import type { Reducer } from "react";
-import type { Todo, TodoAction } from "../types/todoTypes.js";
+import type { ITodo, TodoAction } from "../types/todoTypes.js";
 
-const todoReducer: Reducer<Todo, TodoAction> = (state, action): Todo => {
+const todoReducer: Reducer<Todo[], TodoAction> = (state, action): Todo[] => {
 	switch(action.type) {
 		case "create": {
 			return state

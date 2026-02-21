@@ -9,7 +9,7 @@ export interface TodoAction {
 	// might want to add payload here later
 }
 
-export interface Todo {
+export interface ITodo {
 	task: string,
 	urgency: number,
 	complete: boolean
