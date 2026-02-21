@@ -8,8 +8,9 @@ const todoReducer: Reducer<ITodo[], TodoAction> = (state, action): ITodo[] => {
 			return [input, ...state]
 		}
 		case "update": {
-			console.log("updat")
-			return state
+			const input = action.payload as Partial<ITodo>
+			const index = state.findIndex(todo => todo.id === input.id)
+			return state.toSpliced(index, 1, input)
 		}
 		case "delete": {
 			return state.filter(todo => todo.id !== action.payload)
