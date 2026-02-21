@@ -1,12 +1,8 @@
-enum TodoActionType {
-	create = "create",
-	update = "update",
-	delete = "delete"
-}
+type TodoActionType = "create" | "update" | "delete"
 
 export interface TodoAction {
-	type: TodoActionType
-	// might want to add payload here later
+	type: TodoActionType,
+	payload: ITodo
 }
 
 export interface ITodo {

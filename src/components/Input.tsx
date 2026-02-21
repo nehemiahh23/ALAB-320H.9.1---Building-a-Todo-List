@@ -14,7 +14,18 @@ const Input: FunctionComponent<Props> = ({ dispatch }) => { // everyone say "tha
 	
 	function handleSubmit(e) {
 		e.preventDefault()
-		
+
+		if (!fields.task) {
+			alert("Invalid task input.")
+			return
+		}
+
+		dispatch({type: "create", payload: fields})
+		setFields({
+			task: "",
+			urgency: 5,
+			complete: false
+		})
 	}
 	
 	return (
