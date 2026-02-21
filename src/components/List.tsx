@@ -1,5 +1,4 @@
 import { useReducer } from "react"
-import type { Reducer } from "react";
 import todoReducer from "../reducers/todoReducer.js"
 import Input from "./Input.js"
 import Item from "./Item.js"
@@ -9,7 +8,7 @@ function List() {
 
   return (
 	<div id="parent">
-		<Input />
+		<Input dispatch={listDispatch} />
 		<ul>
 			{ todoList.map((t) => <Item {...t}/>) }	
 		</ul>
