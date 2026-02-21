@@ -3,9 +3,11 @@ import Item from "./Item.js"
 
 function List() {
   return (
-	<div>
+	<div id="parent">
 		<Input />
-		<Item /> {/* map from state */}		
+		<ul>
+			<Item /> {/* map from state */}		
+		</ul>
 	</div>
   )
 }

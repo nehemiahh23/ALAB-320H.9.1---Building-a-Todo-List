@@ -40,3 +40,34 @@
 .read-the-docs {
   color: #888;
 }
+
+#parent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+fieldset {
+	max-width: max-content;
+	border-radius: 1rem;
+}
+
+form {
+	min-height: 15rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+ul {
+	padding-left: 0;
+}
+
+li {
+	border-radius: 1rem;
+	padding: 1rem;
+}
+
+h3 {
+	margin: 0;
+}
