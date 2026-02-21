@@ -1,8 +1,10 @@
 import { Dispatch, FunctionComponent, useState } from "react"
+import type { RefObject } from "react"
 import type { TodoAction } from "../types/todoTypes.js"
 
-const Input: FunctionComponent<Props> = ({ dispatch }) => { // everyone say "thank you TypeScript"
+const Input: FunctionComponent<Props> = ({ dispatch, id }) => { // everyone say "thank you TypeScript"
 	const [fields, setFields] = useState({
+		id: id.current,
 		task: "",
 		urgency: 5,
 		complete: false
@@ -21,7 +23,9 @@ const Input: FunctionComponent<Props> = ({ dispatch }) => { // everyone say "tha
 		}
 
 		dispatch({type: "create", payload: fields})
+		id.current++
 		setFields({
+			id: id.current,
 			task: "",
 			urgency: 5,
 			complete: false
@@ -45,7 +49,8 @@ const Input: FunctionComponent<Props> = ({ dispatch }) => { // everyone say "tha
 }
 
 interface Props {
-	dispatch: Dispatch<TodoAction>
+	dispatch: Dispatch<TodoAction>,
+	id: RefObject<number>
 }
 
 export default Input

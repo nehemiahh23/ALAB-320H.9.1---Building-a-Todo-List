@@ -1,16 +1,17 @@
-import { useReducer } from "react"
+import { useReducer, useRef } from "react"
 import todoReducer from "../reducers/todoReducer.js"
 import Input from "./Input.js"
 import Item from "./Item.js"
 
 function List() {
-	const [todoList, listDispatch] = useReducer(todoReducer, [{task: "expeletive around", urgency: 10, complete: false}, {task: "chill", urgency: 1, complete: true}])
+	const id = useRef(2)
+	const [todoList, listDispatch] = useReducer(todoReducer, [{id: 0, task: "expeletive around", urgency: 10, complete: false}, {id: 1, task: "chill", urgency: 1, complete: true}])
 
   return (
 	<div id="parent">
-		<Input dispatch={listDispatch} />
+		<Input dispatch={listDispatch} id={id} />
 		<ul>
-			{ todoList.map((t) => <Item {...t}/>) }	
+			{ todoList.map((todo) => <Item key={todo.id} dispatch={listDispatch} {...todo}/>) }	
 		</ul>
 	</div>
   )

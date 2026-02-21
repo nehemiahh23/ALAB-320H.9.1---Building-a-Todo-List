@@ -4,16 +4,15 @@ import type { ITodo, TodoAction } from "../types/todoTypes.js";
 const todoReducer: Reducer<ITodo[], TodoAction> = (state, action): ITodo[] => {
 	switch(action.type) {
 		case "create": {
-			console.log("creat")
-			return [action.payload, ...state]
+			const input = action.payload as ITodo
+			return [input, ...state]
 		}
 		case "update": {
 			console.log("updat")
 			return state
 		}
 		case "delete": {
-			console.log("delet")
-			return state
+			return state.filter(todo => todo.id !== action.payload)
 		}
 		default: {
 			return state
