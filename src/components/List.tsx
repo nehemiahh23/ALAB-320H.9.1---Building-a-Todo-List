@@ -5,7 +5,7 @@ import Item from "./Item.js"
 
 function List() {
 	const id = useRef(2)
-	const [todoList, listDispatch] = useReducer(todoReducer, [{id: 0, task: "expeletive around", urgency: 10, complete: false}, {id: 1, task: "chill", urgency: 1, complete: true}])
+	const [todoList, listDispatch] = useReducer(todoReducer, [{id: 0, task: "Learn Typescript", urgency: 10, complete: false}, {id: 1, task: "Learn normal javascript", urgency: 1, complete: true}])
 
   return (
 	<div id="parent">
