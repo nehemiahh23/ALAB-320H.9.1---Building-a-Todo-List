@@ -1,7 +1,23 @@
-import { Dispatch, FunctionComponent } from "react"
+import { Dispatch, FunctionComponent, useState } from "react"
 import type { ITodo, TodoAction } from "../types/todoTypes.js"
 
 const Item: FunctionComponent<Props> = ({ dispatch, id, task, urgency, complete }) => {
+	const [editMode, setEditMode] = useState(false)
+
+	function handleMode(_e) {
+		setEditMode(!editMode)
+	}
+
+	function handleChange(e) {
+		dispatch({type: "update", payload: {
+			id: id,
+			task: task,
+			urgency: urgency,
+			complete: complete,
+			[e.target.name]: e.target.value
+		}})
+	}
+
 	function handleToggle(_e) {
 		dispatch({type: "update", payload: {
 			id: id,
@@ -17,13 +33,20 @@ const Item: FunctionComponent<Props> = ({ dispatch, id, task, urgency, complete 
 
 	return (
 	<li style={{listStyle: "none", backgroundColor: "rgb(200, 0, 0, 0.5)"}}> {/* bgc corresponds w/ urgency, all inputs should be rendered conditionally */}
-		<h3>{ task }</h3>
+		{ editMode ? <>
+			<input type="text" onChange={handleChange} name="task" value={task} style={{textAlign: "center"}} /><br />
+			<input type="range" onChange={handleChange} name="urgency" min="1" max="10" value={urgency} /><br />
+		</> : <h3>{ task }</h3> }
 		<label htmlFor="complete"> Completed?
 			<input type="checkbox" name="complete" onChange={handleToggle} checked={complete} />
 		</label>
 		<br />
-		<button>Edit</button>
-		{ complete && <button onClick={handleDelete}>Delete</button> }
+		{ editMode ? <button onClick={handleMode}>Save</button> : 
+			<>
+				<button onClick={handleMode}>Edit</button> 
+				{ complete && <button onClick={handleDelete}>Delete</button> }
+			</>
+		}
 	</li>
   )
 }
