@@ -3,6 +3,18 @@ import type { ITodo, TodoAction } from "../types/todoTypes.js"
 
 const Item: FunctionComponent<Props> = ({ dispatch, id, task, urgency, complete }) => {
 	const [editMode, setEditMode] = useState(false)
+	const r = urgency * 20
+	const g = 220 - (urgency * 20)
+	// 1 * 200
+	// 2 * 90
+	// 3 * 53.33...
+	// 4 * 35
+	// 5 * 24
+	// 6 * 16.66...
+	// 7 * 11.43
+	// 8 * 7.5
+	// 9 * 4.44...
+	// 10 * 2
 
 	function handleMode(_e) {
 		setEditMode(!editMode)
@@ -32,7 +44,7 @@ const Item: FunctionComponent<Props> = ({ dispatch, id, task, urgency, complete 
 	}
 
 	return (
-	<li style={{listStyle: "none", backgroundColor: "rgb(200, 0, 0, 0.5)"}}> {/* bgc corresponds w/ urgency, all inputs should be rendered conditionally */}
+	<li style={{listStyle: "none", backgroundColor: `rgb(${r}, ${g}, 0, 0.5)`}}> {/* bgc corresponds w/ urgency, all inputs should be rendered conditionally */}
 		{ editMode ? <>
 			<input type="text" onChange={handleChange} name="task" value={task} style={{textAlign: "center"}} /><br />
 			<input type="range" onChange={handleChange} name="urgency" min="1" max="10" value={urgency} /><br />
